@@ -44,6 +44,7 @@ export default {
     this.$refs.boardItem.forEach(el => {
       el.style.backgroundColor = el.dataset.bgcolor
     })
+    this.fetchData()
   },
   methods: {
     ...mapMutations([
@@ -55,13 +56,12 @@ export default {
         .then(data => {
           this.boards = data.list
         })
-        .finally(() => {
+        .finally(_=> {
           this.loading = false
         })
     },
-    onAddBoard(title) {
-      board.create(title)
-        .then(() => this.fetchData())
+    onAddBoard() {
+      this.fetchData()
     }
   }
 }
